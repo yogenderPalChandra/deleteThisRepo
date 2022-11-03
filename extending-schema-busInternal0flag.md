@@ -1,51 +1,22 @@
-[Back to README](./README.md)
+10. **(optional)** **exampleFlag**:
 
+If a service wants to route the message to global bus if this flag is set to false. 
+For example, If exampleFlag="false", the events can be routed to 'target-event-bus'. The routing is done using event pattern matching. 
 
-# busInternal flag
+[Here is the AWS doc of pattern macthing](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-event-patterns-content-based-filtering.html)
 
-OC Schemas are extended for busInternal flag.
-
-All the current OC services should send events to the 'oc-internal-bus'. For this, a flag called 'busInternal' has been introduced in the schemas.
-
-When the busInternal = "true" the events are persisted in the 'oc-internal-bus'. While, when busInternal = "false" the events should be routed to ISC global bus. This is done by the eventbus pattern matching rule.
-
-The Schema looks after extension looks like this:
 
 ```javascript
 {
-"title": "Equipment Unit Deleted", 
-"type": "object", 
-"service": "Equipment",
-"action": "unit:deleted", 
-"version": "v3.0.0", 
-"eventBusName": "oc-internal-bus", 
-"properties": {
-"equipmentId": {
-"type": "string",
-"example": "example-equipment-id"
-},
-"account": {
-"type": "string",
-"example": "syskron"
-}
-}, 
-"required": ["equipmentId", "account"], 
-"additionalProperties": true, 
-"busInternal": "true" // added property
-}
-```
-
-Event rule:
-
-```javascript
-{
+  "source": ["name-of-service"],
   "detail": {
-    "busInternal": [{
-      "prefix": "false"
-    }]
+    "schema": {
+      "exampleFlag": [{
+        "prefix": "false"
+      }]
+    }
   }
 }
 
 ```
-
-So if this rule hits, i.e. the event has the flag busInternal = "false" the event is routed to the ISC global bus.
+So if this rule hits, i.e. the event has the flag exampleFlag="false" the event would be routed to the target-event-bus.
