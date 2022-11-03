@@ -19,4 +19,4 @@ For example, If exampleFlag="false", the events can be routed to 'target-event-b
 }
 
 ```
-So if this rule hits, i.e. the event has the flag exampleFlag="false" the event would be routed to the target-event-bus.
+So if this rule hits, i.e. the event has the flag exampleFlag="false", the event would be routed to the target-event-bus.
