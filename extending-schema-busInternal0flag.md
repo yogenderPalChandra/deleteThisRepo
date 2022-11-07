@@ -18,4 +18,4 @@ If a service wants to route the event also to the general ISC bus `s2a-isc-event
 }
 
 ```
-So if this rule hits, i.e. `eventBusName!=oc-internal-bus` the event would be routed to the `s2a-isc-eventbridge-eventbus`.
+So if this rule hits, i.e. `eventBusName!=oc-internal-bus` the event would be routed to the `s2a-isc-eventbridge-eventbus`. All consumers and producers should be modified to listen/publish to global eventbus when the event become public
