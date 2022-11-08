@@ -4,7 +4,7 @@
 Internal bus: Service can choose to have and publish to the internal bus. From there the events can be routed to global bus based on the `eventBusName`. 
 - `eventBusName` in the schemas should be used to distinguish between internal and public events.
 - Producers and consumers of internal events have to publish/listen to the internal bus (since internal events should not appear on public bus.
-- Service can route the event from the internal to global bus, in which case consumers and producers should be modified to listen/publish to global eventbus when the event becomes public.
+    - If the event becomes public, consumers and producers should be modified to listen/publish to global eventbus.
     - Switch of consumers is only necessary if it is expected that event in question could be published by other services.
     - Producers can still publish to internal event as long as there is the rule to forward the events to public event bus, but it might be better to switch all internal producers and consumers to public bus.
 
@@ -16,7 +16,6 @@ One example of rule is:
 
 ```javascript
 {
-  "source": ["oc", "test"],
   "detail": {
     "schema": {
       "eventBusName": [{
