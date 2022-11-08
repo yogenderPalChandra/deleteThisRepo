@@ -1,5 +1,5 @@
 
-10. **(optional)**:
+10. **(optional)** **Service internal bus:**:
 
 Internal bus: Service can choose to have and publish to the internal bus. From there the events can be routed to global bus based on the `eventBusName`. 
 - `eventBusName` in the schemas should be used to distinguish between internal and public events.
